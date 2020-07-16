@@ -13,13 +13,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("enosh")
+                .withUser("aroma")
                 .password("123")
+                .roles("company")
+                .and()
+                .withUser("admin")
+                .password("admin123")
                 .roles("admin");
     }
 
     @Bean
-    public PasswordEncoder getPasswordEncoder(){
+    public PasswordEncoder getPasswordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
 }
