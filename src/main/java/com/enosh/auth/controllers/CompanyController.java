@@ -5,12 +5,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/company")
 public class CompanyController {
 
-    @GetMapping("/findById/{id}")
-    public String helloWorld(@PathVariable("id") Long id){
-        return "<h1>Company Aroma!</h1>";
+
+    @GetMapping("/me")
+    public String getPrincipal(Principal principal){
+        return "<h1>Company: " + (principal != null ? principal.getName() : "guest") + "</h1>";
     }
 }
